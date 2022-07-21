@@ -75,9 +75,13 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    //TODO:
-    // UNIMPLEMENTED: complete this function!
+  async addStory(user, newStory) {
+
+    const response = await axios.post(`${BASE_URL}/stories`, {
+      token: user.loginToken,
+      story: newStory});
+
+    return new Story(response.data.story);
   }
 }
 
@@ -172,7 +176,7 @@ class User {
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
    */
-//creating a new user again? 
+//creating a new user again?
   static async loginViaStoredCredentials(token, username) {
     try {
       const response = await axios({
