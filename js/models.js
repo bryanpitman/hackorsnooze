@@ -21,11 +21,11 @@ class Story {
     this.createdAt = createdAt;
   }
 
-  /** Parses hostname out of URL and returns it. */
+  /** Parses protocol out of URL and returns the only the host name. */
 
   getHostName() {
-    // TODO: UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    let urlWithoutProtocol = this.url.split("").splice(8, url.length - 1).join("");
+    return urlWithoutProtocol;
   }
 }
 
@@ -63,8 +63,8 @@ class StoryList {
 
     // turn plain old story objects from API into instances of Story class
     const stories = response.data.stories.map(story => new Story(story));
-      //getStories commuicates with the API with the call method getStores() to return an object with ONLY a story list
-          //we dont want to make an instance just to return this story object, this uses less memory
+    //getStories commuicates with the API with the call method getStores() to return an object with ONLY a story list
+    //we dont want to make an instance just to return this story object, this uses less memory
     // build an instance of our own class using the new array of stories
     return new StoryList(stories);
   }
@@ -80,7 +80,7 @@ class StoryList {
     console.log("addStory", user, newStory);
     const response = await axios.post(
       `${BASE_URL}/stories`,
-      {token: user.loginToken, story: newStory}
+      { token: user.loginToken, story: newStory }
     );
 
     return new Story(response.data.story);
@@ -100,13 +100,13 @@ class User {
    */
 
   constructor({
-                username,
-                name,
-                createdAt,
-                favorites = [],
-                ownStories = []
-              },
-              token) {
+    username,
+    name,
+    createdAt,
+    favorites = [],
+    ownStories = []
+  },
+    token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
@@ -154,7 +154,7 @@ class User {
    * - username: an existing user's username
    * - password: an existing user's password
    */
-//does this make a new user everytime a user logsin?
+  //does this make a new user everytime a user logsin?
   static async login(username, password) {
     const response = await axios({
       url: `${BASE_URL}/login`,
@@ -179,7 +179,7 @@ class User {
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
    */
-//creating a new user again?
+  //creating a new user again?
   static async loginViaStoredCredentials(token, username) {
     try {
       const response = await axios({
