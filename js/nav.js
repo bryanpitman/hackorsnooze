@@ -40,4 +40,16 @@ function updateNavOnLogin() {
 
 //navsubmit story function will be needed to add stories to the page?
 //nav fav stories
-//nav my stories 
+//nav my stories
+
+//when thelogged in user clicks the submit nav button will display story dropdown
+function navStoryClick(evt) {
+  console.debug("navStoryClick", evt);
+  evt.preventDefault();
+  $submitForm.slideToggle();
+
+}
+
+// $nav.on("click", $navSubmitStory, navStoryClick);
+$navSubmitStory.on("click", navStoryClick);
+
