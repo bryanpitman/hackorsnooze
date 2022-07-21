@@ -43,13 +43,12 @@ function updateNavOnLogin() {
 //nav my stories
 
 //when thelogged in user clicks the submit nav button will display story dropdown
-function navStoryClick(evt) {
-  console.debug("navStoryClick", evt);
+function navSubmitStoryClick(evt) {
+  console.debug("navSubmitStoryClick", evt);
   evt.preventDefault();
   $submitForm.slideToggle();
 
 }
 
-// $nav.on("click", $navSubmitStory, navStoryClick);
-$navSubmitStory.on("click", navStoryClick);
+$navSubmitStory.on("click", navSubmitStoryClick);
 

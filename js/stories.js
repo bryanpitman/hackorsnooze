@@ -50,3 +50,24 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/** Handles the submit story form. Grabs the author, title, and url and
+ * calls the .addStory method on the storyList
+ */
+async function handleSubmit(evt) {
+  console.log("handleSubmit", currentUser, storyList, evt);
+  evt.preventDefault();
+
+  const author = $("#author").val();
+  const title = $("#title").val();
+  const url = $("#url").val();
+
+  await storyList.addStory(currentUser, {author, title, url});
+
+  putStoriesOnPage();
+
+  $submitForm.trigger("reset");
+  location.reload();
+}
+
+$submitForm.on("submit", handleSubmit);

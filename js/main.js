@@ -5,7 +5,6 @@ const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNwcmludDEy
 const $body = $("body");
 const $submitForm = $("#submit-form");
 const $navSubmitStory = $("#nav-submit-story");
-const $nav = $("nav");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");
