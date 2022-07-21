@@ -1,7 +1,7 @@
 "use strict";
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
-
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNwcmludDEyMyIsImlhdCI6MTY1ODQyMzc0N30.3kn8tVMqTmtt360Ib3qSMD2msUKp20nQq3Dei5UDRZU"
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -48,3 +48,6 @@ console.warn("HEY STUDENT: This program sends many debug messages to" +
   " seeing those helpful debug messages. In your browser console, click on" +
   " menu 'Default Levels' and add Verbose");
 $(start);
+
+
+

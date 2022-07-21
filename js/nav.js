@@ -36,3 +36,8 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+
+//navsubmit story function will be needed to add stories to the page?
+//nav fav stories
+//nav my stories 

@@ -52,6 +52,8 @@ class StoryList {
     //  **not** an instance method. Rather, it is a method that is called on the
     //  class directly. Why doesn't it make sense for getStories to be an
     //  instance method?
+    //storyList.getStories cant call b/c we are passing in the instance to the story list
+    //should return an instance of our own class?
 
     // query the /stories endpoint (no auth required)
     const response = await axios({
@@ -74,6 +76,7 @@ class StoryList {
    */
 
   async addStory( /* user, newStory */) {
+    //TODO:
     // UNIMPLEMENTED: complete this function!
   }
 }
@@ -102,11 +105,12 @@ class User {
     this.createdAt = createdAt;
 
     // instantiate Story instances for the user's favorites and ownStories
+    //favorites and ownStories is an array that takes in value? { storyId, title, author, url, username, createdAt }
     this.favorites = favorites.map(s => new Story(s));
     this.ownStories = ownStories.map(s => new Story(s));
 
     // store the login token on the user so it's easy to find for API calls.
-    this.loginToken = token;
+    this.loginToken = token; //might need to change token to global var TOKEN?
   }
 
   /** Register new user in API, make User instance & return it.
@@ -116,6 +120,7 @@ class User {
    * - name: the user's full name
    */
 
+  //this already works dont break it =]
   static async signup(username, password, name) {
     const response = await axios({
       url: `${BASE_URL}/signup`,
@@ -142,7 +147,7 @@ class User {
    * - username: an existing user's username
    * - password: an existing user's password
    */
-
+//does this make a new user everytime a user logsin?
   static async login(username, password) {
     const response = await axios({
       url: `${BASE_URL}/login`,
@@ -167,7 +172,7 @@ class User {
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
    */
-
+//creating a new user again? 
   static async loginViaStoredCredentials(token, username) {
     try {
       const response = await axios({
