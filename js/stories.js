@@ -54,20 +54,21 @@ function putStoriesOnPage() {
 /** Handles the submit story form. Grabs the author, title, and url and
  * calls the .addStory method on the storyList
  */
-async function handleSubmit(evt) {
-  console.log("handleSubmit", currentUser, storyList, evt);
+ async function handleSubmitStory(evt) {
+  console.log("handleSubmitStory", currentUser, storyList, evt);
   evt.preventDefault();
 
   const author = $("#author").val();
   const title = $("#title").val();
   const url = $("#url").val();
-
+// TODO: set response equal to a variable
   await storyList.addStory(currentUser, {author, title, url});
-
+// TODO: revise to append instead of calling putStoriesOnPage
   putStoriesOnPage();
 
   $submitForm.trigger("reset");
   location.reload();
 }
 
-$submitForm.on("submit", handleSubmit);
+
+$submitForm.on("submit", handleSubmitStory);

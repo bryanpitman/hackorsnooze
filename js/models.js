@@ -24,7 +24,11 @@ class Story {
   /** Parses protocol out of URL and returns the only the host name. */
 
   getHostName() {
-    let urlWithoutProtocol = this.url.split("").splice(8, url.length - 1).join("");
+
+
+    console.log(this.url);
+    let splittingurl = this.url.split("").splice(8, this.url.length).join("");
+    let urlWithoutProtocol = splittingurl.split("/")[0];
     return urlWithoutProtocol;
   }
 }
@@ -76,17 +80,28 @@ class StoryList {
    * Returns the new Story instance
    */
 
+
   async addStory(user, newStory) {
-    console.log("addStory", user, newStory);
+
     const response = await axios.post(
       `${BASE_URL}/stories`,
       { token: user.loginToken, story: newStory }
     );
-
-    return new Story(response.data.story);
-    // TODO: add to story list with unshift
+    let story = new Story(response.data.story);
+    storyList.stories.unshift(story);
+    return story;
   }
 }
+
+// async addStory(user, newStory) {
+
+//   const response = await axios.post(`${BASE_URL}/stories`, {
+//     token: user.loginToken,
+//     story: newStory});
+
+//   return new Story(response.data.story);
+// }
+//}
 
 
 /******************************************************************************
