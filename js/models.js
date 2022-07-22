@@ -229,22 +229,30 @@ class User {
     let username = currentUser.username;
     let storyId = story.storyId;
 
-    await axios.post(
+     await axios.post(
       `${BASE_URL}/users/${username}/favorites/${storyId}`,
       { token: currentUser.loginToken }
     );
 
+    currentUser.favorites.push(story);
+
   }
 
-
+  /**  grabs the currentUser favorite story id and uses their token to authorize
+   *  removing their favorite story
+    */
   async removeFavorite(story) {
 
     let username = currentUser.username;
     let storyId = story.storyId;
 
     await axios.delete(
-      `${BASE_URL}/users/${username}/favorites/${storyId}`, {data:{ token: currentUser.loginToken }}
+      `${BASE_URL}/users/${username}/favorites/${storyId}`,
+      { data: { token: currentUser.loginToken } }
 
     );
+     //remove index where storyID is stored.
+    let storyIndex = currentUser.favorites.indexOf(story);
+    currentUser.favorites.splice(storyIndex, 1);
   }
 }
