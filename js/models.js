@@ -27,6 +27,12 @@ class Story {
     const url = new URL(this.url);
     return url.hostname;
   }
+
+  static async getArbitraryStoryByID(storyId) {
+    await axios.get(
+      `${BASE_URL}/stories`, {storyId});
+
+  }
 }
 
 

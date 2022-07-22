@@ -22,6 +22,15 @@ async function getAndShowStoriesOnStart() {
 function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
+  // PSEUDOCODE:
+  //
+  // let favorites = currentUser.favorites.map(story => story.storyId);
+  // for (let storyId of favorites) {
+  //   let favorite = $("li").filter(function(){
+  //     return $(this).attr('id') === storyId
+  //  });
+  //   $favoritesList.children("li").children("span").children("i").toggleClass("bi-heart bi-heartbreak");
+
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
@@ -52,6 +61,9 @@ function putStoriesOnPage() {
     $allStoriesList.append($story);
   }
 
+
+
+
   $allStoriesList.show();
 }
 
@@ -79,6 +91,7 @@ $submitForm.on("submit", handleSubmitStory);
 async function handleFavoriteClick(evt) {
   console.log(evt);
   const storyId = $(evt.target).closest("li").attr('id');
+  // create external/new variable that pulls stories from API not from storyList
   const story = storyList.stories.find(story => story.storyId === storyId);
   console.log(currentUser.favorites.includes(story));
 
