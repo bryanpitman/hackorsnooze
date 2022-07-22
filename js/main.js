@@ -5,7 +5,7 @@ const $body = $("body");
 const $submitForm = $("#submit-form");
 const $navSubmitStory = $("#nav-submit-story");
 const $navFavorites = $("#nav-favorites");
-const $favoritesList =  $("#favorites-list")
+const $favoritesList = $("#favorites-list");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");

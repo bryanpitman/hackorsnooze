@@ -66,7 +66,7 @@ async function handleSubmitStory(evt) {
   const title = $("#title").val();
   const url = $("#url").val();
 
-  const story = await storyList.addStory(currentUser, {author, title, url});
+  const story = await storyList.addStory(currentUser, { author, title, url });
   const $story = generateStoryMarkup(story);
   $allStoriesList.append($story);
 
@@ -82,19 +82,19 @@ async function handleFavoriteClick(evt) {
   const story = storyList.stories.find(story => story.storyId === storyId);
   console.log(currentUser.favorites.includes(story));
 
-  if (currentUser.favorites.includes(story)){
-    console.log("currentUser includes this story");
+  //compare by id's instead use a different function
+  //to compare? filter method. return an array of objects that match
+  //our condition. if filter finds story id, and length is greater than zero
+  // then remove //change icon, refresh UI on favorites
+
+  const filterFav = currentUser.favorites.filter(story => story.storyId === storyId);
+  if (filterFav.length > 0) {
     await currentUser.removeFavorite(story);
-    //icon heartbreak
   } else {
-    console.log("currentUser does not include this story");
     await currentUser.addFavorite(story);
-    //replace heartbreak with new icon
   }
 
-  loadFavoritesForUser();
-  // currentUser.favorites.includes(story) ? currentUser.removeFavorite(story) : currentUser.addFavorite(story);
-
+  toggleIcon(evt);
 }
 
 $allStoriesList.on("click", ".bi", handleFavoriteClick);
@@ -102,25 +102,24 @@ $favoritesList.on("click", ".bi", handleFavoriteClick);
 
 /** will display current user favorites in the ordered list
  *  */
-function loadFavoritesForUser(){
+function loadFavoritesForUser() {
   $favoritesList.empty();
   console.log("loadFavoritesForUser");
   for (let story of currentUser.favorites) {
-        const $story = generateStoryMarkup(story);
-        $favoritesList.append($story);
-      }
+    const $story = generateStoryMarkup(story);
+    $favoritesList.append($story);
 
+  }
+  $favoritesList.children("li").children("span").children("i").toggleClass("bi-heart bi-heartbreak");
   //append favorites from currentUser.favorites
+}
+
+/**toggles the icon in favorites menu */
+function toggleIcon(evt) {
+
+  $(evt.target).toggleClass("bi-heart bi-heartbreak");
+
 }
 
 
 
-
-
-//   // loop through all of our stories and generate HTML for them
-//   for (let story of storyList.stories) {
-//     const $story = generateStoryMarkup(story);
-//     $allStoriesList.append($story);
-//   }
-
-//   $allStoriesList.show();

@@ -138,7 +138,7 @@ class User {
    * - name: the user's full name
    */
 
-  //this already works dont break it =]
+
   static async signup(username, password, name) {
     const response = await axios({
       url: `${BASE_URL}/signup`,
@@ -165,7 +165,7 @@ class User {
    * - username: an existing user's username
    * - password: an existing user's password
    */
-  //does this make a new user everytime a user logsin?
+
   static async login(username, password) {
     const response = await axios({
       url: `${BASE_URL}/login`,
@@ -190,7 +190,7 @@ class User {
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
    */
-  //creating a new user again?
+
   static async loginViaStoredCredentials(token, username) {
     try {
       const response = await axios({
@@ -229,7 +229,7 @@ class User {
     let username = this.username;
     let storyId = story.storyId;
 
-     await axios.post(
+    await axios.post(
       `${BASE_URL}/users/${username}/favorites/${storyId}`,
       { token: this.loginToken }
     );
@@ -251,7 +251,7 @@ class User {
       { data: { token: this.loginToken } }
 
     );
-     //remove index where storyID is stored.
+    //remove index where storyID is stored.
     let storyIndex = this.favorites.indexOf(story);
     this.favorites.splice(storyIndex, 1);
   }
