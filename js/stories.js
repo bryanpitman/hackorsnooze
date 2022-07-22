@@ -76,30 +76,35 @@ async function handleSubmitStory(evt) {
 $submitForm.on("submit", handleSubmitStory);
 
 /** Handles clicking the favorite icons */
-function handleFavoriteClick(evt) {
+async function handleFavoriteClick(evt) {
   console.log(evt);
   const storyId = $(evt.target).closest("li").attr('id');
   const story = storyList.stories.find(story => story.storyId === storyId);
+  console.log(currentUser.favorites.includes(story));
 
   if (currentUser.favorites.includes(story)){
-    currentUser.removeFavorite(story);
+    console.log("currentUser includes this story");
+    await currentUser.removeFavorite(story);
     //icon heartbreak
   } else {
-    currentUser.addFavorite(story);
+    console.log("currentUser does not include this story");
+    await currentUser.addFavorite(story);
     //replace heartbreak with new icon
   }
 
+  loadFavoritesForUser();
   // currentUser.favorites.includes(story) ? currentUser.removeFavorite(story) : currentUser.addFavorite(story);
 
 }
 
 $allStoriesList.on("click", ".bi", handleFavoriteClick);
+$favoritesList.on("click", ".bi", handleFavoriteClick);
 
-/**will display current user favorites in the ordered list
+/** will display current user favorites in the ordered list
  *  */
-function displayFavorites(){
-
-
+function loadFavoritesForUser(){
+  $favoritesList.empty();
+  console.log("loadFavoritesForUser");
   for (let story of currentUser.favorites) {
         const $story = generateStoryMarkup(story);
         $favoritesList.append($story);
@@ -107,6 +112,7 @@ function displayFavorites(){
 
   //append favorites from currentUser.favorites
 }
+
 
 
 

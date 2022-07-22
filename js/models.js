@@ -226,15 +226,15 @@ class User {
   */
   async addFavorite(story) {
 
-    let username = currentUser.username;
+    let username = this.username;
     let storyId = story.storyId;
 
      await axios.post(
       `${BASE_URL}/users/${username}/favorites/${storyId}`,
-      { token: currentUser.loginToken }
+      { token: this.loginToken }
     );
 
-    currentUser.favorites.push(story);
+    this.favorites.push(story);
 
   }
 
@@ -243,16 +243,16 @@ class User {
     */
   async removeFavorite(story) {
 
-    let username = currentUser.username;
+    let username = this.username;
     let storyId = story.storyId;
 
     await axios.delete(
       `${BASE_URL}/users/${username}/favorites/${storyId}`,
-      { data: { token: currentUser.loginToken } }
+      { data: { token: this.loginToken } }
 
     );
      //remove index where storyID is stored.
-    let storyIndex = currentUser.favorites.indexOf(story);
-    currentUser.favorites.splice(storyIndex, 1);
+    let storyIndex = this.favorites.indexOf(story);
+    this.favorites.splice(storyIndex, 1);
   }
 }

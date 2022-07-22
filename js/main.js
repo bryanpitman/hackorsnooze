@@ -1,11 +1,11 @@
 "use strict";
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
-const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNwcmludDEyMyIsImlhdCI6MTY1ODQyMzc0N30.3kn8tVMqTmtt360Ib3qSMD2msUKp20nQq3Dei5UDRZU"
 const $body = $("body");
 const $submitForm = $("#submit-form");
 const $navSubmitStory = $("#nav-submit-story");
-let $favoritesList =  $("#favorites-list")
+const $navFavorites = $("#nav-favorites");
+const $favoritesList =  $("#favorites-list")
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
 const $allStoriesList = $("#all-stories-list");

@@ -11,6 +11,7 @@ function navAllStories(evt) {
   evt.preventDefault();
   hidePageComponents();
   putStoriesOnPage();
+  $favoritesList.hide();
 }
 
 $body.on("click", "#nav-all", navAllStories);
@@ -52,3 +53,12 @@ function navSubmitStoryClick(evt) {
 
 $navSubmitStory.on("click", navSubmitStoryClick);
 
+
+function navFavoritesClick(evt) {
+  console.debug("navFavoritesClick", evt);
+  evt.preventDefault();
+  $allStoriesList.hide();
+  $favoritesList.show();
+}
+
+$navFavorites.on("click", navFavoritesClick);
