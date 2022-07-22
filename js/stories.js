@@ -81,8 +81,40 @@ function handleFavoriteClick(evt) {
   const storyId = $(evt.target).closest("li").attr('id');
   const story = storyList.stories.find(story => story.storyId === storyId);
 
-  currentUser.addFavorite(story);
+  if (currentUser.favorites.includes(story)){
+    currentUser.removeFavorite(story);
+    //icon heartbreak
+  } else {
+    currentUser.addFavorite(story);
+    //replace heartbreak with new icon
+  }
+
+  // currentUser.favorites.includes(story) ? currentUser.removeFavorite(story) : currentUser.addFavorite(story);
 
 }
 
 $allStoriesList.on("click", ".bi", handleFavoriteClick);
+
+/**will display current user favorites in the ordered list
+ *  */
+function displayFavorites(){
+
+
+  for (let story of currentUser.favorites) {
+        const $story = generateStoryMarkup(story);
+        $favoritesList.append($story);
+      }
+
+  //append favorites from currentUser.favorites
+}
+
+
+
+
+//   // loop through all of our stories and generate HTML for them
+//   for (let story of storyList.stories) {
+//     const $story = generateStoryMarkup(story);
+//     $allStoriesList.append($story);
+//   }
+
+//   $allStoriesList.show();
