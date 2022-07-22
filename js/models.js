@@ -235,4 +235,16 @@ class User {
     );
 
   }
+
+
+  async removeFavorite(story) {
+
+    let username = currentUser.username;
+    let storyId = story.storyId;
+
+    await axios.delete(
+      `${BASE_URL}/users/${username}/favorites/${storyId}`, {data:{ token: currentUser.loginToken }}
+
+    );
+  }
 }
