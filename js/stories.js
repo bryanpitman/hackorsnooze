@@ -25,6 +25,10 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+        <span class="heart">
+          <i class="bi bi-heartbreak">
+          </i>
+        </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -70,3 +74,15 @@ async function handleSubmitStory(evt) {
 }
 
 $submitForm.on("submit", handleSubmitStory);
+
+/** Handles clicking the favorite icons */
+function handleFavoriteClick(evt) {
+  console.log(evt);
+  const storyId = $(evt.target).closest("li").attr('id');
+  const story = storyList.stories.find(story => story.storyId === storyId);
+
+  currentUser.addFavorite(story);
+
+}
+
+$allStoriesList.on("click", ".bi", handleFavoriteClick);
