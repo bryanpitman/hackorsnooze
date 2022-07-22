@@ -61,10 +61,10 @@ async function handleSubmitStory(evt) {
   const author = $("#author").val();
   const title = $("#title").val();
   const url = $("#url").val();
-// TODO: set response equal to a variable
-  await storyList.addStory(currentUser, {author, title, url});
+
+  const response = await storyList.addStory(currentUser, {author, title, url});
 // TODO: revise to append instead of calling putStoriesOnPage
-  putStoriesOnPage();
+  $allStoriesList.append(response);
 
   $submitForm.trigger("reset");
   location.reload();
