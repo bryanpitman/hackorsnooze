@@ -216,4 +216,23 @@ class User {
       return null;
     }
   }
+  /** Accepts a Story instance and makes a POST request to the server
+   * which will add the Story instance to the favorites array for the user.
+   */
+
+  /* grab the currentUser to have access to the instance property username
+  grab the storyId for the Story instance. pass these into the POST url with the
+  login token for the user.
+  */
+  async addFavorite(story) {
+
+    let username = currentUser.username;
+    let storyId = story.storyId;
+
+    await axios.post(
+      `${BASE_URL}/users/${username}/favorites/${storyId}`,
+      { token: currentUser.loginToken }
+    );
+
+  }
 }
