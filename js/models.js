@@ -24,12 +24,8 @@ class Story {
   /** Parses protocol out of URL and returns the only the host name. */
 
   getHostName() {
-
-
-    console.log(this.url);
-    let splittingurl = this.url.split("").splice(8, this.url.length).join("");
-    let urlWithoutProtocol = splittingurl.split("/")[0];
-    return urlWithoutProtocol;
+    const url = new URL(this.url);
+    return url.hostname;
   }
 }
 
